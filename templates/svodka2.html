@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/styles_proba.css">
+    <link href="/examples/vendors/bootstrap-3.4/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, intial scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <title>5comand.roboprom</title>
+
+</head>
+
+<body>
+
+<nav class="navMenu">
+    <a href="home">Home</a>
+    <a href="all_about">Main</a>
+    <a href="info">Info</a>
+    <div class="dot"></div>
+</nav>
+
+<div id="wrapper">
+    <header>
+        <nav>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h1>Статистика работы линии производства</h1>
+            <table>
+                <thread>
+                    <th width=16%><b>Номер ячейки</b></th>
+                    <th width=16%><b>Название ячейки</b></th>
+                    <th width=16%><b>Текущее состояние</b></th>
+                    <th width=16%><b>Состояние ожидания</b></th>
+                    <th width=16%><b>Режим работы ячейки</b></th>
+                    <th width=16%><b>Кол-во обработанных заготовок с момента включения</b></th>
+                    <tr>
+                        <td align="center">1</td>
+                        <td align="center"><a style="color: white" href="cell/1">Выкладка фишек</a></td>
+                        <td align="center">{{ data1[2].capitalize() }}</td>
+                        <td align="center">{{ data1[3].capitalize() }}</td>
+                        <td align="center">{{ data1[1].capitalize() }}</td>
+                        <td align="center">{{ data1[0] }}</td>
+                    </tr>
+                    <tr>
+                        <td align="center">2</td>
+                        <td align="center"><a style="color: white" href="cell/1">Сортировка</a></td>
+                        <td align="center">{{ data2[2].capitalize() }}</td>
+                        <td align="center">{{ data2[3].capitalize() }}</td>
+                        <td align="center">{{ data2[1].capitalize() }}</td>
+                        <td align="center">{{ data2[0] }}</td>
+                    </tr>
+                    <tr>
+                        <td align="center">3</td>
+                        <td align="center"><a style="color: white" href="cell/1">Маркировка</a></td>
+                        <td align="center">{{ data3[2].capitalize() }}</td>
+                        <td align="center">{{ data3[3].capitalize() }}</td>
+                        <td align="center">{{ data3[1].capitalize() }}</td>
+                        <td align="center">{{ data3[0] }}</td>
+                    </tr>
+                    <tr>
+                        <td align="center">4</td>
+                        <td align="center"><a style="color: white" href="cell/1">Выкладка оснований</a></td>
+                        <td align="center">{{ data4[2].capitalize() }}</td>
+                        <td align="center">{{ data4[3].capitalize() }}</td>
+                        <td align="center">{{ data4[1].capitalize() }}</td>
+                        <td align="center">{{ data4[0].capitalize() }}</td>
+                    </tr>
+                    <tr>
+                        <td align="center">5</td>
+                        <td align="center"><a style="color: white" href="cell/1">Раскладка</a></td>
+                        <td align="center">{{ data5[2].capitalize() }}</td>
+                        <td align="center">{{ data5[3].capitalize() }}</td>
+                        <td align="center">{{ data5[1].capitalize() }}</td>
+                        <td align="center">{{ data5[0].capitalize() }}</td>
+                    </tr>
+                    <tr>
+                        <td align="center">6</td>
+                        <td align="center"><a style="color: white" href="cell/1">Упаковка</a></td>
+                        <td align="center">{{ data6[2].capitalize() }}</td>
+                        <td align="center">{{ data6[3].capitalize() }}</td>
+                        <td align="center">{{ data6[1].capitalize() }}</td>
+                        <td align="center">{{ data6[0].capitalize() }}</td>
+                    </tr>
+                </thread>
+            </table>
+        </section>
+        <div>
+            <canvas id="doughnut-chart" width="1500" height="350"></canvas>
+            <script>
+        new Chart(document.getElementById("doughnut-chart"), {
+    type: 'doughnut',
+    data: {
+      labels: ["Включенные ячейки", "Выключенные ячейки", "Ячейки в режиме ожидания", "Ячейки в режиме ошибки"],
+      datasets: [
+        {
+          label: "Кол-во и состояние ячеек",
+          backgroundColor: ["#3e95cd", "#8e5ea2","#75151e","#f7f21a","#c45850"],
+          data: [{{s1}}, {{s2}}, {{s3}}, {{s4}}]
+        }
+      ]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Состояние ячеек',
+        color: "#666"
+      }
+    }
+});
+
+
+
+
+
+
+            </script>
+        </div>
+
+        <div class="block3">
+            <h2 class="font1">Процент брака заготовок:</h2>
+            <h2 class="font2">Средняя загрузка оборудования<br>(в час):</h2>
+        </div>
+
+        <div class="block2">
+            <div class="pie animate" style="--p:{{ brak }};--c:#fd7b7c">{{ kol_vo_brak }}шт.<br> {{
+                brak }}%
+            </div>
+            <div class="pie animate2" style="--p:{{ sr_ob }};--c:#543964"> {{ sr_ob }}%</div>
+        </div>
+
+
+    </main>
+    <div class="block1">
+
+        <canvas id="line-chart" width="1700" height="390"></canvas>
+        <script>new Chart(document.getElementById("line-chart"), {
+  type: 'line',
+  data: {
+    labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+    datasets: [{
+        data: {{ graphs }},
+        label: "Объём продукции",
+        borderColor: "#c45850",
+        fill: false
+      }
+    ]
+  },
+  options: {
+    title: {
+      display: true,
+      text: 'Объём выпуска продукции за день'
+    }
+  }
+});
+
+        </script>
+    </div>
+</body>
+</html>

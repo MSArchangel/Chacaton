@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/styles_proba.css">
+    <link href="/examples/vendors/bootstrap-3.4/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, intial scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <title>5comand.roboprom</title>
+
+</head>
+
+<body>
+
+<nav class="navMenu">
+    <a href="home">Home</a>
+    <a href="/all_about">Main</a>
+    <a href="info">Info</a>
+    <div class="dot"></div>
+</nav>
+
+<div id="wrapper">
+    <header>
+        <nav>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h1>Информация о работе ячейки_№1; "НАЧАЛО"</h1>
+            <div class="block_detali">
+                <h1 class="detali1"><b>Средняя загрузка ячейки (день/час): 54/54</b></h1>
+                <h1 class="detali1"><b>Ячейкой было обработано деталей (день/час): 465/234</b></h1>
+            </div>
+        </section>
+        <div>
+            <canvas id="doughnut-chart" width="1500" height="350"></canvas>
+            <script>
+        new Chart(document.getElementById("doughnut-chart"), {
+    type: 'doughnut',
+    data: {
+      labels: ["Включенные ячейки", "Выключенные ячейки", "Ячейки в режиме ожидания", "Ячейки в режиме ошибки"],
+      datasets: [
+        {
+          label: "Кол-во и состояние ячеек",
+          backgroundColor: ["#3e95cd", "#8e5ea2","#75151e","#f7f21a","#c45850"],
+          data: [1, 4, 3, 6]
+        }
+      ]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Состояние ячеек',
+        color: "#666"
+      }
+    }
+});
+
+
+            </script>
+            <div class="tables">
+                <table>
+                    <thread>
+                        <th width=16%><b>Состояние</b></th>
+                        <th width=16%><b>Время нахождения в состоянии (день)</b></th>
+                        <th width=16%><b>Процент времени нахождения в состоянии (день)</b></th>
+                        <th width=16%><b>Время нахождения в состоянии (час)</b></th>
+                        <th width=16%><b>Процент времени нахождения в состоянии (час)</b></th>
+                        <tr>
+                            <td align="center">1</td>
+                            <td align="center"><a style="color: white" href="cell/1">Выкладка
+                                фишек</a></td>
+                            <td align="center"></td>
+                            <td align="center"></td>
+                            <td align="center"></td>
+                        </tr>
+                    </thread>
+                </table>
+                <br><br><br>
+                <table>
+                    <thread>
+                        <th width=16%><b>Состояние ожидания</b></th>
+                        <th width=16%><b>Суммарное время ожидания в состоянии (день)</b></th>
+                        <th width=16%><b>Процент времени ожидания в состоянии (день)</b></th>
+                        <th width=16%><b>Суммарное время ожидания в состоянии (час)</b></th>
+                        <th width=16%><b>Процент времени ожидания в состоянии (час)</b></th>
+                        <tr>
+                            <td align="center">1</td>
+                            <td align="center"><a style="color: white" href="cell/1">Выкладка
+                                фишек</a></td>
+                            <td align="center"></td>
+                            <td align="center"></td>
+                            <td align="center"></td>
+                        </tr>
+                    </thread>
+                </table>
+            </div>
+
+        </div>
+
+
+    </main>
+    <div class="block1">
+
+        <canvas id="line-chart" width="1700" height="390"></canvas>
+        <script>new Chart(document.getElementById("line-chart"), {
+  type: 'line',
+  data: {
+    labels: [0, 1, 2, 3],
+    datasets: [{
+        data: [5, 3, 7, 6],
+        label: "Объём продукции",
+        borderColor: "#c45850",
+        fill: false
+      }
+    ]
+  },
+  options: {
+    title: {
+      display: true,
+      text: 'Объём выпуска продукции за день'
+    }
+  }
+});
+
+
+        </script>
+    </div>
+</body>
+</html>

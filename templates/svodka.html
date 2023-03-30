@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <meta name="viewport" content="width=device-width, intial scale=1.0">
+    <title>5comand.roboprom</title>
+    <script src="https://www.google.com/jsapi"></script>
+    <script>
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Газ', 'Объём'],
+          ['Группа 1', 25.0],
+          ['Группа 2', 25.0],
+          ['Группа 3', 25.0],
+          ['Группа 4', 25.0]
+        ]);
+        var options = {
+        title: 'Состояние ячеек',
+        is3D: true,
+        pieResidueSliceLabel: 'Остальное'
+      };
+      var chart = new google.visualization.PieChart(document.getElementById('null'));
+        chart.draw(data, options);
+    }
+  </script>
+</head>
+<body>
+    <div id="wrapper">
+    <header>
+      <nav>
+      </nav>
+    </header>
+    <main>
+      <section>
+        <h1>Статистика работы линии производства</h1>
+        <table>
+          <thread>
+          <th width = 16%>Номер ячейки</th>
+          <th width = 16%>Название ячейки</th>
+          <th width = 16%>Текущее состояние</th>
+          <th width = 16%>Состояние ожидания</th>
+          <th width = 16%>Режим работы ячейки</th>
+          <th width = 16%>Кол-во обработанных заготовок с момента включения</th>
+          <tr>
+          <td align="center">1</td>
+          <td align="center">Выкладка фишек</td>
+          <td align="center">Состояние(инфо)</td>
+          <td align="center">Состояние ожидания(инфо)</td>
+          <td align="center">Режим работы ячейки(инфо)</td>
+          <td align="center">Кол-во обработанных заготовок(инфо)</td>
+          </tr>
+          <tr>
+          <td align="center">2</td>
+          <td align="center">Сортировка</td>
+          <td align="center">...</td>
+          <td align="center">...</td>
+          <td align="center">...</td>
+          <td align="center">...</td>
+          </tr>
+          <tr>
+          <td align="center">3</td>
+          <td align="center">Маркировка</td>
+          <td align="center">...</td>
+          <td align="center">...</td>
+          <td align="center">...</td>
+          <td align="center">...</td>
+          </tr>
+          <tr>
+          <td align="center">4</td>
+          <td align="center">Выкладка оснований</td>
+          <td align="center">...</td>
+          <td align="center">...</td>
+          <td align="center">...</td>
+          <td align="center">...</td>
+          </tr>
+          <tr>
+          <td align="center">5</td>
+          <td align="center">Раскладка</td>
+          <td align="center">...</td>
+          <td align="center">...</td>
+          <td align="center">...</td>
+          <td align="center">...</td>
+          </tr>
+          <tr>
+          <td align="center">6</td>
+          <td align="center">Упаковка</td>
+          <td align="center">...</td>
+          <td align="center">...</td>
+          <td align="center">...</td>
+          <td align="center">...</td>
+          </tr>
+          </thread>
+          </table>
+        <div id="null" style="width: 1000px; height: 800px;"></div>
+      </section>
+    </main>
+  </body>
+</html>
