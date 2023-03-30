@@ -27,8 +27,8 @@ def info_yach(cell_num: int):
     # status_chart_data = [x_values=[i for i in range(kol_vo_chasov)], y_values=[0, 1, 3, 4, 2, 0, 3]],
     cell_status_pie = [(data[cell_num - 1]['status_d'][1]) / 60,
                        (data[cell_num - 1]['status_d'][0]) / 60,
-                       (data[cell_num - 1]['status_d'][3]) / 60,
-                       (data[cell_num - 1]['status_d'][2]) / 60]
+                       (data[cell_num - 1]['status_d'][2]) / 60,
+                       (data[cell_num - 1]['status_d'][3]) / 60]
 
     cell_status_table = data[cell_num - 1]['status']
     status_time_day = round(data[cell_num - 1]['status_d'][data[cell_num - 1]['status']] / 60, 2)
@@ -73,3 +73,4 @@ def info_yach(cell_num: int):
     # cell_chill_pie = CellChillPie(no_reason=1, broken=0, maintenance=0, fixing=0)
     # cell_chill_table=list[CellChillTableRow]
 
+print(info_yach(5))

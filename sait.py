@@ -29,7 +29,8 @@ def info_yacheika(cell_number):
                            data_pie=[round(x, 2) for x in arr[6]], status_cell=arr[7],
                            time_status_d=arr[8], per_d=arr[9], time_status_h=arr[10],
                            per_h=arr[11], status_wait=arr[12], sum_st_wait_d=arr[13][0],
-                           per_wait_d=arr[13][1], sum_st_wait_h=round(arr[13][2] / 60), per_wait_h=arr[13][3],
+                           per_wait_d=arr[13][1], sum_st_wait_h=round(arr[13][2] / 60),
+                           per_wait_h=arr[13][3],
                            for_graph=for_graph_status())
 
 
