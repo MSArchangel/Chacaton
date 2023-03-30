@@ -31,3 +31,19 @@ def for_graph():
             arr.append(0)
     return arr[::-1]
 
+def for_graph_status():
+    from_hours, an_hours_ago = datetime.datetime.now(), datetime.datetime.now() - datetime.timedelta(
+        hours=1)
+    arr = []
+    x = str(datetime.datetime.now()).split()[1].split(':')[0]
+    for i in range(1, int(x) + 1):
+        api_status_count = f'http://roboprom.kvantorium33.ru/api/history?cell=6&param=status&from={int(datetime.datetime.timestamp(an_hours_ago))}&to={int(datetime.datetime.timestamp(from_hours))}'
+        data = requests.get(api_status_count).json()
+        from_hours = an_hours_ago
+        an_hours_ago = from_hours - datetime.timedelta(hours=1)
+
+        if len(data['data']) > 0:
+            arr.append(data['data'][-1]['value'])
+        else:
+            arr.append(0)
+    return arr[::-1]

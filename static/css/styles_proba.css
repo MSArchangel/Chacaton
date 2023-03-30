@@ -242,13 +242,9 @@ margin-right: 10px;
 margin-bottom: 30px;
 }
 h1.detali1{
-    text-align: left;
+    text-align: center;
     color: white;
     margin-bottom: 50px;
-}
-.block_detali{
-    display: flex;
-    justify-content: space-around;
 }
 
 .tables{

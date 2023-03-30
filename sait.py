@@ -10,8 +10,9 @@ from data.users import User
 from forms.user import RegisterForm
 from forms.login import LoginForm
 
+from cell import info_yach
 from main import func_api
-from testing_time import sr_zn_oborud, for_graph
+from testing_time import sr_zn_oborud, for_graph, for_graph_status
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'wtf-msi'
@@ -22,7 +23,14 @@ login_manager.init_app(app)
 @app.route('/cell/<cell_number>')
 def info_yacheika(cell_number):
     cell_number = int(cell_number)
-    return render_template('info_yach.html')
+    arr = info_yach(cell_number)
+    return render_template('info_yach.html', cell_num=arr[0], name=arr[1],
+                           avg_d=arr[2], avg_h=arr[3], int_d=arr[4], int_h=arr[5],
+                           data_pie=[round(x, 2) for x in arr[6]], status_cell=arr[7],
+                           time_status_d=arr[8], per_d=arr[9], time_status_h=arr[10],
+                           per_h=arr[11], status_wait=arr[12], sum_st_wait_d=arr[13][0],
+                           per_wait_d=arr[13][1], sum_st_wait_h=round(arr[13][2] / 60), per_wait_h=arr[13][3],
+                           for_graph=for_graph_status())
 
 
 @login_manager.user_loader
@@ -36,7 +44,6 @@ def abouting():
     x = func_api()
     arr = []
     api_1_count = 'http://roboprom.kvantorium33.ru/api/current'
-    api_2_count = 'http://roboprom.kvantorium33.ru/api/history?cell=2&param=count'
     for i in range(len(x[1])):
         arr.append(x[1][i][f'Ячейка №{i + 1}'])
     print(arr)
@@ -49,7 +56,7 @@ def abouting():
                                brak=round(requests.get(api_1_count).json()['data'][1]['count_d'] /
                                           requests.get(api_1_count).json()['data'][0][
                                               'count_d'] * 100),
-                               kol_vo_brak=requests.get(api_2_count).json()['data'][-1]['value'],
+                               kol_vo_brak=requests.get(api_1_count).json()['data'][1]['count_d'],
                                sr_ob=sr_zn_oborud(),
                                graphs=for_graph())
     else:
