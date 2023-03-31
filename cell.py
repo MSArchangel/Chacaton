@@ -72,3 +72,4 @@ def info_yach(cell_num: int):
             cell_wait_status_table[1:]]
     # cell_chill_pie = CellChillPie(no_reason=1, broken=0, maintenance=0, fixing=0)
     # cell_chill_table=list[CellChillTableRow]
+
