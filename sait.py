@@ -2,7 +2,7 @@ import os
 import json
 
 import requests
-from flask import Flask, render_template, redirect, request
+from flask import Flask, render_template, redirect, request, url_for
 
 from data import db_session
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
@@ -11,7 +11,7 @@ from forms.user import RegisterForm
 from forms.login import LoginForm
 
 from cell import info_yach
-from main import func_api
+from main import func_api, for_every_cell
 from testing_time import sr_zn_oborud, for_graph, for_graph_status
 
 app = Flask(__name__)
@@ -79,7 +79,16 @@ def home_page():
 
 @app.route('/info')
 def informating():
-    return 'Hello!'
+    arr = for_every_cell()
+    return render_template('monitor.html', bc_1=arr[0][0], bc_2=arr[1][0], bc_3=arr[2][0],
+                           bc_4=arr[3][0], bc_5=arr[4][0], bc_6=arr[5][0], intd_1=arr[0][1],
+                           intd_2=arr[1][1], intd_3=arr[2][1], intd_4=arr[3][1], intd_5=arr[4][1],
+                           intd_6=arr[5][1], inth_1=arr[0][2], inth_2=arr[1][2], inth_3=arr[2][2],
+                           inth_4=arr[3][2], inth_5=arr[4][2], inth_6=arr[5][2],
+                           loadd_1=arr[0][3], loadd_2=arr[1][3], loadd_3=arr[2][3],
+                           loadd_4=arr[3][3], loadd_5=arr[4][3], loadd_6=arr[5][3],
+                           loadh_1=arr[0][4], loadh_2=arr[1][4], loadh_3=arr[2][4],
+                           loadh_4=arr[3][4], loadh_5=arr[4][4], loadh_6=arr[5][4])
 
 
 @app.route('/register', methods=['GET', 'POST'])

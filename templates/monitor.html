@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/style_monitor.css">
+    <link href="/examples/vendors/bootstrap-3.4/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, intial scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <title>5comand.roboprom</title>
+    <style>
+.square {
+  height: 250px;
+  width: 250px;
+  text-align: center;
+  font-size: 20px;
+
+
+}
+.text_sq{
+    margin-top: 30px;
+
+}
+.monitor{
+    display: flex;
+    justify-content: space-around;
+}
+
+    </style>
+</head>
+<body>
+<nav class="navMenu">
+    <a href="home">Home</a>
+    <a href="all_about">Main</a>
+    <a href="info">Info</a>
+    <div class="dot"></div>
+</nav>
+<h1>Мониторинг работы линии</h1>
+
+<div class="monitor">
+    <div class="square" style="background-color: {{bc_1}}; color: black;" onclick="window.location.href = '/cell/1'">
+        <div class="text_sq">1<br><br>Обработано (д / ч):<br>
+            {{intd_1}} / {{inth_1}}<br><br>Средняя нагрузка (д / ч):<br> {{loadd_1}}% / {{loadh_1}}%<br><img width="65" src="{{url_for('static', filename='right-arrow.png')}}"/>
+        </div>
+    </div>
+    <div class="square" style="background-color: {{bc_2}}; color: black"onclick="window.location.href = '/cell/2'">
+        <div class="text_sq">2<br><br>Обработано (д / ч):<br>
+            {{intd_2}} / {{inth_2}}<br><br>Средняя нагрузка (д / ч):<br> {{loadd_2}}% / {{loadh_2}}%<br><img width="65" src="{{url_for('static', filename='right-arrow.png')}}"/>
+        </div>
+    </div>
+    <div class="square" style="background-color: {{bc_3}}; color: black" onclick="window.location.href = '/cell/3'">
+        <div class="text_sq">3<br><br>Обработано (д / ч):<br>
+            {{intd_3}} / {{inth_3}}<br><br>Средняя нагрузка (д / ч):<br> {{loadd_3}}% / {{loadh_3}}%<br><img width="65" src="{{url_for('static', filename='right-arrow.png')}}"/>
+        </div>
+    </div>
+    <div class="column_square"
+         style="display: flex; flex-direction: column; justify-content: space-between;">
+        <div class="square" style="background-color: {{bc_5}}; color: black"onclick="window.location.href = '/cell/5'">
+            <div class="text_sq">5<br><br>Обработано (д / ч):<br>
+                {{intd_5}} / {{inth_5}}<br><br>Средняя нагрузка (д / ч):<br> {{loadd_5}}% / {{loadh_5}}%<br><img width="65" src="{{url_for('static', filename='right-arrow.png')}}"/>
+            </div>
+        </div>
+        <br><br><br>
+        <div class="square" style="background-color: {{bc_4}}; color: black"onclick="window.location.href = '/cell/4'">
+            <div class="text_sq">4<br><br>Обработано (д / ч):<br>
+                {{intd_4}} / {{inth_4}}<br><br>Средняя нагрузка (д / ч):<br> {{loadd_4}}% / {{loadh_4}}%<br><img width="55" src="{{url_for('static', filename='up-arrow.png')}}"/>
+            </div>
+        </div>
+    </div>
+    <div class="square" style="background-color: {{bc_6}}; color: black"onclick="window.location.href = '/cell/6'">
+        <div class="text_sq">6<br><br>Обработано (д / ч):<br>
+            {{intd_6}} / {{inth_6}}<br><br>Средняя нагрузка (д / ч):<br> {{loadd_6}}% / {{loadh_6}}%<br><img width="55" src="{{url_for('static', filename='up-arrow.png')}}"/>
+        </div>
+    </div>
+</div>
+
+<script>
+let nextUpdate = 5;
+setInterval(() => {
+    nextUpdate--;
+    if (nextUpdate <= 0) {
+        window.location.reload();
+    } else {
+        document.getElementById("next-update").innerText = `Данные обновятся через ${nextUpdate} секунд...`
+    }
+}, 1000);
+</script>
+
+
+</body>
+</html>
+

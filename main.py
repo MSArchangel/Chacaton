@@ -66,3 +66,20 @@ def func_api():
     else:
         return 'error'
 
+
+def for_every_cell():
+    api = 'http://roboprom.kvantorium33.ru/api/current'
+    colors_dict = {0: '#808080', 1: '#50c878', 2: '#fde910', 3: '#ff4040'}
+    result = []
+    response = requests.get(api).json()['data']
+    pprint.pprint(response)
+    for i in range(6):
+        spisok = []
+        spisok.append(colors_dict[response[i]['status']])
+        spisok.append(response[i]['count_d'])
+        spisok.append(response[i]['count_h'])
+        spisok.append(round(response[i]['load_d'][response[i]['status']] * 100, 2))
+        spisok.append(round(response[i]['load_h'][response[i]['status']] * 100, 2))
+        result.append(spisok)
+    return result
+
